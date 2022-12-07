@@ -1,0 +1,7 @@
+require(RIdeogram)
+data(human_karyotype, package = "RIdeogram")
+data(gene_density, package = "RIdeogram")
+data(Random_RNAs_500, package = "RIdeogram")
+print(human_karyotype)
+ideogram(karyotype = human_karyotype, overlaid = "gene_density", label = Random_RNAs_500, label_type = "line")
+convertSVG("chromosome.svg", device = "png", dpi=50)
