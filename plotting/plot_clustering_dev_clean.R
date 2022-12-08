@@ -150,7 +150,12 @@ cl_h <- Heatmap(as.matrix(t_lite_data_pivot_clustering_num),
     cluster_column_slices = FALSE,
     column_title_rot = 90,
 )
-cl_h
+
+ht_opt$TITLE_PADDING <- unit(c(8.5, 8.5), "points")
+draw(cl_h,
+    # row_title = "Three heatmaps, row title", row_title_gp = gpar(col = "red"),
+    column_title = paste0("[Chromosome size unscaled LLR heatmap] Sample : ", snakemake@wildcards[["sample"]], ", Methods used: ", snakemake@wildcards[["methods"]], ", Filter used: ", snakemake@wildcards[["filter"]]), column_title_gp = gpar(fontsize = 16)
+)
 
 ## CATEGORICAL
 
@@ -231,6 +236,12 @@ Heatmap(as.matrix(t_lite_data_pivot),
     row_order = row_order(cl_h),
     column_title_rot = 90,
     # use_raster = TRUE, raster_by_magick = TRUE, raster_quality=10
+)
+
+ht_opt$TITLE_PADDING <- unit(c(8.5, 8.5), "points")
+draw(cl_h,
+    # row_title = "Three heatmaps, row title", row_title_gp = gpar(col = "red"),
+    column_title = paste0("[Chromosome size unscaled categorical heatmap] Sample : ", snakemake@wildcards[["sample"]], ", Methods used: ", snakemake@wildcards[["methods"]], ", Filter used: ", snakemake@wildcards[["filter"]]), column_title_gp = gpar(fontsize = 16)
 )
 
 # Export clustered row order to output in order to use it in python script
